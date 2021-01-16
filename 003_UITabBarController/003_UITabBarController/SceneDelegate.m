@@ -1,7 +1,7 @@
 #import "SceneDelegate.h"
 #import "ViewController.h"
 
-@interface SceneDelegate ()
+@interface SceneDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -43,9 +43,21 @@
     controller4.tabBarItem.selectedImage = [UIImage imageNamed:@"icon.bundle/page_selected@2x.png"];
 
     [tabbarController setViewControllers:@[navigationController, controller2, controller3, controller4]];
+    
+    // 设置delegate
+    tabbarController.delegate = self;
 
     self.window.rootViewController = tabbarController;
     [self.window makeKeyAndVisible];
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    NSLog(@"shouldSelect");
+    return true;
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    NSLog(@"didSelect");
 }
 
 
