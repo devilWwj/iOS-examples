@@ -1,4 +1,5 @@
 #import "SceneDelegate.h"
+#import "ViewController.h"
 
 @interface SceneDelegate ()
 
@@ -13,12 +14,15 @@
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     self.window = [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];
     UITabBarController *tabbarController = [[UITabBarController alloc] init];
+    
+    ViewController *viewController = [[ViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
 
-    UIViewController *controller1 = [[UIViewController alloc] init];
-    controller1.view.backgroundColor = [UIColor redColor];
-    controller1.tabBarItem.title = @"新闻";
-    controller1.tabBarItem.image = [UIImage imageNamed:@"icon.bundle/home@2x.png"];
-    controller1.tabBarItem.selectedImage = [UIImage imageNamed:@"icon.bundle/home_selected@2x.png"];
+//    UIViewController *controller1 = [[UIViewController alloc] init];
+//    controller1.view.backgroundColor = [UIColor redColor];
+    navigationController.tabBarItem.title = @"新闻";
+    navigationController.tabBarItem.image = [UIImage imageNamed:@"icon.bundle/home@2x.png"];
+    navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"icon.bundle/home_selected@2x.png"];
 
     UIViewController *controller2 = [[UIViewController alloc] init];
     controller2.view.backgroundColor = [UIColor greenColor];
@@ -38,7 +42,7 @@
     controller4.tabBarItem.image = [UIImage imageNamed:@"icon.bundle/page@2x.png"];
     controller4.tabBarItem.selectedImage = [UIImage imageNamed:@"icon.bundle/page_selected@2x.png"];
 
-    [tabbarController setViewControllers:@[controller1, controller2, controller3, controller4]];
+    [tabbarController setViewControllers:@[navigationController, controller2, controller3, controller4]];
 
     self.window.rootViewController = tabbarController;
     [self.window makeKeyAndVisible];
